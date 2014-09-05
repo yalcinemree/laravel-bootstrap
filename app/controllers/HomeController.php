@@ -131,7 +131,7 @@ class HomeController extends BaseController {
 		}
 	}
 
-	private function getUserInfo($userId)
+	private function getUserInfo($id)
 	{
 		
 		return User::where('id','=', $id)->first();
