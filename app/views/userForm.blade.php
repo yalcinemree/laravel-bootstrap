@@ -1,9 +1,24 @@
-<p style="color:green">{{ Session::get('message') }}</p>
-<p style="color:red">{{ Session::get('error') }}</p>
-<form name="userForm" method="POST">
+@extends('layouts.master')
 
-Adı : <input name='name' value="{{{ Input::old('name') }}}" /><br>
-Soyadı : <input name='surname' value="{{{ Input::old('surname') }}}"/><br>
-Email : <input name="email" value="{{{ Input::old('email') }}}"/><br>
-<input type="submit" value="kaydet">
-</form>
+@section('content')
+
+
+	<form role="form" name="userForm" method="POST">
+	  <div class="form-group">
+	    <label>Adı</label>
+	    <input type="name" class="form-control" name="name" placeholder="Adı" value="{{{ Input::old('name') }}}">
+	  </div>
+	  <div class="form-group">
+	    <label>Soyadı</label>
+	    <input type="name" class="form-control" name="surname" placeholder="Soyadı" value="{{{ Input::old('surname') }}}">
+	  </div>
+	  <div class="form-group">
+	    <label>Email</label>
+	    <input type="email" class="form-control" name="email" placeholder="Email" value="{{{ Input::old('email') }}}">
+	  </div>	  
+	  <button type="submit" class="btn btn-default">Kaydet</button>
+	</form>
+
+	<p>	@include('messages') </p>
+
+@stop

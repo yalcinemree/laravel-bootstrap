@@ -1,9 +1,23 @@
-<p style="color:green">{{ Session::get('message') }}</p>
-<p style="color:red">{{ Session::get('error') }}</p>
+@extends('layouts.master')
 
-<form name="userEdit" method="POST">
-Adı : <input name='name' value="{{{ $userInfo['name'] }}}" /><br>
-Soyadı : <input name='surname' value="{{{ $userInfo['surname'] }}}"/><br>
-Email : <input name="email" value="{{{ $userInfo['email'] }}}"/><br>
-<input type="submit" value="Güncelle">
-</form>
+@section('content')
+
+	<form role="form" name="userEdit" method="POST">
+	  <div class="form-group">
+	    <label>Adı</label>
+	    <input type="name" class="form-control" name="name" placeholder="Adı" value="{{{ $userInfo['name'] }}}">
+	  </div>
+	  <div class="form-group">
+	    <label>Soyadı</label>
+	    <input type="name" class="form-control" name="surname" placeholder="Soyadı" value="{{{ $userInfo['surname'] }}}">
+	  </div>
+	  <div class="form-group">
+	    <label>Email</label>
+	    <input type="email" class="form-control" name="email" placeholder="Email" value="{{{ $userInfo['email'] }}}">
+	  </div>	  
+	  <button type="submit" class="btn btn-default">Güncelle</button>
+	</form>
+
+	<p>	@include('messages') </p>
+
+@stop
