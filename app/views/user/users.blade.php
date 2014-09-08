@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-
+	@include('message.messages')
     <div class="page-header">
 	    <h1>Müşteriler</h1>
 	</div>
@@ -16,8 +16,7 @@
 	  </div>
 	</div><!-- /.col-sm-4 -->
 	</div>
-	
-	@include('messages')
+
 
 @stop
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-
+	<p>	@include('message.messages') </p>
 	<form role="form" name="userEdit" method="POST">
 	  <div class="form-group">
 	    <label>Adı</label>
@@ -17,6 +17,5 @@
 	  </div>	  
 	  <button type="submit" class="btn btn-default">Güncelle</button>
 	</form>
-	<p>	@include('messages') </p>
 
 @stop

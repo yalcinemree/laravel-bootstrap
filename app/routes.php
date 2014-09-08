@@ -23,7 +23,7 @@ Route::get('users/{id}', ['as' => 'userInfo', 'uses' => 'HomeController@userInfo
 Route::get('users/add',['as' => 'userForm', 'uses' => 'HomeController@userForm'])->where(['add' => '[a-z]+']);
 Route::post('users/add',['as' => 'userAdd', 'uses' => 'HomeController@userAdd'])->where(['add' => '[a-z]+']);
 
-Route::get('users/{id}/edit',['as' => 'userEdit', 'uses' => 'HomeController@userEdit']);
-Route::post('users/{id}/edit',['as' => 'userEditSave', 'uses' => 'HomeController@userEditSave']);
+Route::get('users/{id}/edit',['as' => 'userEdit', 'uses' => 'HomeController@userEdit'])->where(['id' => '[0-9]+']);
+Route::post('users/{id}/edit',['as' => 'userEditSave', 'uses' => 'HomeController@userEditSave'])->where(['id' => '[0-9]+']);
 
-Route::get('users/{id}/delete',['as' => 'userDelete', 'uses' => 'HomeController@userDelete']);
+Route::get('users/{id}/delete',['as' => 'userDelete', 'uses' => 'HomeController@userDelete'])->where(['id' => '[0-9]+']);

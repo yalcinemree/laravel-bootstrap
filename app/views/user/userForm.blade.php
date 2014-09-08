@@ -2,6 +2,7 @@
 
 @section('content')
 
+<p>	@include('message.messages') </p>
 
 	<form role="form" name="userForm" method="POST">
 	  <div class="form-group">
@@ -18,7 +19,4 @@
 	  </div>
 	  <button type="submit" class="btn btn-default">Kaydet</button>
 	</form>   
-
-	<p>	@include('messages') </p>
-
 @stop

@@ -24,16 +24,14 @@ class HomeController extends BaseController {
 	{
 		$users = User::all()->toArray();
 
-    	return View::make('users')->with('users', $users);
+    	return View::make('user.users')->with('users', $users);
 	}
 
 	public function userInfo($id)
 	{	
-		if($this->getUserInfo($id)){
-
-			$userInfo = User::where('id','=', $id)->first()->toArray();
-
-			return View::make('userInfo',compact('userInfo'));
+		$userInfo = $this->getUserInfo($id);
+		if($userInfo){
+			return View::make('user.userInfo',compact('userInfo'));
 		}
 		else{
 			return Redirect::route('users')->with(['error'=>'Aradığınız kişi bulunamamıştır.']);
@@ -43,7 +41,7 @@ class HomeController extends BaseController {
 
 	public function userForm()
 	{
-		return View::make('userForm');
+		return View::make('user.userForm');
 	}
 
 	public function userAdd()
@@ -77,11 +75,9 @@ class HomeController extends BaseController {
 
 	public function userEdit($id)
 	{	
-		if($this->getUserInfo($id)){
-
-			$userInfo = User::where('id','=', $id)->first()->toArray();
-
-			return View::make('userEdit',compact('userInfo'));
+		$userInfo = $this->getUserInfo($id);
+		if($userInfo){
+			return View::make('user.userEdit',compact('userInfo'));
 		}
 		else{
 			return Redirect::route('users')->with(['error'=>'Aradığınız kişi bulunamamıştır.']);
@@ -92,12 +88,19 @@ class HomeController extends BaseController {
 	{
 		if($this->getUserInfo($id)){
 			if(Input::get('name') AND Input::get('surname') AND Input::get('email')){
-				$user = User::find($id);
-				$user->name     = Input::get('name');
-				$user->surname  = Input::get('surname');
-				$user->email 	= Input::get('email');
+				try{
+					$user = User::find($id);
+					$user->name     = Input::get('name');
+					$user->surname  = Input::get('surname');
+					$user->email 	= Input::get('email');
+					$updated = $user->save();
+				}
+				catch(Exception $e){
+					Log::error($e->getMessage());
+					return Redirect::to('users/'.$id.'/edit')->with(['error'=> $e->getMessage()]);
+				}
 
-				if($user->save()){
+				if($updated){
 					return Redirect::route('users')->with(['message'=>'Başarıyla kaydedildi.']);
 				}
 				else{
@@ -117,10 +120,16 @@ class HomeController extends BaseController {
 	{
 	
 		if ($this->getUserInfo($id)) {
+			try{
+				$user = User::find($id);
+				$deleted = $user->delete();
+			}
+			catch(Exception $e){
+				Log::error($e->getMessage());
+				return Redirect::route('users')->with(['error'=> $e->getMessage()]);
+			}
 
-			$user = User::find($id);
-
-			if($user->delete()){
+			if($deleted){
 				return Redirect::route('users')->with(['message'=>'Başarıyla silinmiştir.']);
 			}
 
@@ -133,8 +142,16 @@ class HomeController extends BaseController {
 
 	private function getUserInfo($id)
 	{
-		
-		return User::where('id','=', $id)->first();
+		try{
+			$userInfo = User::where('id','=', $id)->first();
+			if($userInfo){
+				return $userInfo->toArray();
+			}
+		}
+		catch(Exception $e){
+			Log::error($e->getMessage());
+		}
+		return;
 	}
 
 }
