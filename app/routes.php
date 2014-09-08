@@ -27,3 +27,5 @@ Route::get('users/{id}/edit',['as' => 'userEdit', 'uses' => 'HomeController@user
 Route::post('users/{id}/edit',['as' => 'userEditSave', 'uses' => 'HomeController@userEditSave'])->where(['id' => '[0-9]+']);
 
 Route::get('users/{id}/delete',['as' => 'userDelete', 'uses' => 'HomeController@userDelete'])->where(['id' => '[0-9]+']);
+
+Route::post('ajax/search', ['as' => 'search', 'uses' => 'AjaxController@search']);

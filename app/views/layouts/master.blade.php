@@ -76,5 +76,6 @@
     <script src="/emre/public/assets/js/jquery.js"></script>
     <script src="/emre/public/assets/js/bootstrap.min.js"></script>
     <script src="/emre/public/assets/js/docs.min.js"></script>
+    <script src="/emre/public/assets/js/deneme.js"></script>
   </body>
 </html>
