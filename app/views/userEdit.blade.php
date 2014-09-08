@@ -17,7 +17,6 @@
 	  </div>	  
 	  <button type="submit" class="btn btn-default">Güncelle</button>
 	</form>
-
 	<p>	@include('messages') </p>
 
 @stop

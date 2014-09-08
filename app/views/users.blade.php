@@ -16,7 +16,7 @@
 	  </div>
 	</div><!-- /.col-sm-4 -->
 	</div>
-
+	
 	@include('messages')
 
 @stop

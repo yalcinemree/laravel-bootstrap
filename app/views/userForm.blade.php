@@ -15,9 +15,9 @@
 	  <div class="form-group">
 	    <label>Email</label>
 	    <input type="email" class="form-control" name="email" placeholder="Email" value="{{{ Input::old('email') }}}">
-	  </div>	  
+	  </div>
 	  <button type="submit" class="btn btn-default">Kaydet</button>
-	</form>
+	</form>   
 
 	<p>	@include('messages') </p>
 
