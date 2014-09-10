@@ -26,5 +26,7 @@
 	</div><!-- /.col-sm-4 -->
 	</div>
 
+	<div class="loader">Loading...</div>
+
 @stop
 
